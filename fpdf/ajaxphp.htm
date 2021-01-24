@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+ <html lang="fr" >
+
+<head>
+    <meta charset="utf-8">
+    <title> PHP et ajax</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Reseau social pour developpeurs">
+    <meta name="author" content="Erich Osada">
+
+ <!-- STYLESHEETS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/readable/bootstrap.min.css" rel="stylesheet" integrity="sha384-Li5uVfY2bSkD3WQyiHX8tJd0aMF91rMrQP5aAewFkHkVSTT2TmD2PehZeMmm7aiL" crossorigin="anonymous">
+    <!--  <link href="assets/css/bootstrap.min.css" rel="stylesheet" >  -->
+
+    <script language="javascript" src="requete.js"></script>
+    <script  src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript">
+    
+      var oTa ;
+            //Envoyer la requete
+             function executeRequete(asUrl)
+             {
+                 oTa = document.getElementById("ta");
+                 oTa.value = "";
+                 var requete = creerRequete();
+
+                 // Open 
+                 requete.open('GET', asUrl, true);
+
+                 // callback
+
+                 requete.onreadystatechange  = function(){
+                       afficheContenu(requete);
+                 }
+
+                 // send 
+                 requete.send(null);
+             }
+
+             // fonction pour affichage
+
+             function afficheContenu(requete)
+             {
+                 if(requete.readyState == 4 && requete.status == 200){
+
+                oTa.value = requete.responseText;
+                 }
+             }
+
+
+    </script>
+
+</head>
+ <body>
+ 
+         <h2 >PHP et Ajax </h2>
+         <br/ >
+     
+
+      
+       
+        <textarea id="ta" cols="20" rows="3" placeholder="Votre message" class="message"></textarea><br/>
+        <input name="cb_req" class="submit" type="button" value="Lancer" onclick="executeRequete('ajaxphp.php')" />
+           
+     
+      
+     
+   
+</body>
+</html>
+  
